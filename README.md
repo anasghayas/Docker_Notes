@@ -44,3 +44,22 @@ graph BT
     style Deps fill:#f8f9fa,stroke:#6c757d,stroke-width:2px,color:#212529
     style Base fill:#cce5ff,stroke:#004085,stroke-width:2px,color:#004085
 ```
+
+## Running an Image Locally
+To run an image locally, you use the `docker run` command followed by the image name and its version (which is called a tag).
+
+```bash
+docker run <image_name>:<version>
+```
+*Example: `docker run ubuntu:22.04`*
+
+### Layer Caching & Downloading
+When you run or pull an image for the first time, Docker downloads it layer by layer. Because of the layered architecture discussed above, Docker is incredibly efficient with bandwidth and storage. 
+
+If you later download a different version of that same image (e.g., changing from `v1.0` to `v2.0`), Docker will **only download the specific layers that have changed**. Any underlying layers that remain identical between the two versions are instantly reused from your local system cache! This is known as **Layer Caching**.
+
+### Why Tag a Version?
+When pulling images from Docker Hub, it is best practice to always specify a **version tag**. If you omit the tag (e.g., `docker pull ubuntu`), Docker defaults to the tag `:latest`.
+
+* **The Danger of `:latest`**: The `:latest` tag is mutable, meaning the image it points to can change over time. If you build your application on Monday using the `:latest` image, and then pull it again on Friday, the `:latest` image might have been updated by the maintainer to a newer version. This could introduce breaking changes or unexpected behavior in your application, even though you didn't change your own code.
+* **Reproducibility**: By using a specific version tag (e.g., `ubuntu:22.04` or `nginx:1.21.6`), you ensure **reproducibility**. You lock your application to a specific, immutable snapshot of the base image, guaranteeing that it will behave the same way today as it will tomorrow.
