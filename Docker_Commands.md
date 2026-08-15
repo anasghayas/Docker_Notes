@@ -32,3 +32,40 @@ docker ps [OPTIONS]
 * `docker ps` - Lists all currently running containers, showing their container ID, image, command, created time, status, mapped ports, and names.
 * `docker ps -a` (or `--all`) - Lists **all** containers, including those that have stopped or exited. This is useful for finding the ID or name of a container that crashed or finished its job.
 * `docker ps -q` - Only displays the numeric container IDs (quiet mode). This is commonly used in scripts (e.g., to pass all running container IDs to a `docker stop` command).
+
+### `docker start`
+Used to start one or more stopped containers. It does not create a new container; it just resumes a previously created one.
+
+**Syntax:**
+```bash
+docker start [CONTAINER_ID or NAME]
+```
+
+### `docker stop`
+Used to gracefully stop one or more running containers.
+
+**Syntax:**
+```bash
+docker stop [CONTAINER_ID or NAME]
+```
+
+### `docker logs`
+Used to fetch the logs of a container. This is essential for debugging applications that are running in the background (detached mode).
+
+**Syntax:**
+```bash
+docker logs [OPTIONS] [CONTAINER_ID or NAME]
+```
+**Common Uses:**
+* `docker logs my_container` - Shows the static logs for that container.
+* `docker logs -f my_container` - Follows the log output live (like `tail -f`), streaming new logs to your terminal as they happen.
+
+## Image Management
+
+### `docker images`
+Used to list all the Docker images currently downloaded and stored locally on your machine. It shows the repository, tag, image ID, creation date, and size.
+
+**Syntax:**
+```bash
+docker images
+```
