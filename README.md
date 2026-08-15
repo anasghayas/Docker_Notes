@@ -10,7 +10,20 @@ In simpler terms, Docker allows you to package an application and all its depend
 It is important to understand the fundamental difference between a Docker **Image** and a Docker **Container**:
 
 * **Docker Image:** Think of an image as a **blueprint** or a recipe. It is a static, read-only file that contains the application source code, libraries, dependencies, tools, and other files needed for the application to run. You don't "run" an image directly; instead, you use it to create containers.
-* **Docker Container:** A container is the **running instance** of an image. If the image is the blueprint, the container is the actual house built from that blueprint. A container has state—it can be started, stopped, paused, and destroyed. You can run multiple containers simultaneously from a single image.
+* **Docker Container:** A container is the **running instance** of an image. Simply put, **a Docker container is a runtime environment for a Docker image**. If the image is the blueprint, the container is the actual house built from that blueprint. A container has state—it can be started, stopped, paused, and destroyed. You can run multiple containers simultaneously from a single image.
+
+## Docker vs. Virtual Machines (VMs)
+While both Docker and VMs provide isolation, they achieve it in fundamentally different ways based on their architectural stack:
+
+* **The Virtual Machine Stack:** `Hardware -> Host OS -> Hypervisor -> Guest OS (Kernel) -> Application`
+  * A VM requires a full, heavy **Guest Operating System (kernel)** to be installed and booted for every isolated environment. A VM completely virtualizes the hardware and changing the VM means you are dealing with a completely separate kernel.
+* **The Docker Stack:** `Hardware -> Host OS (Kernel) -> Docker Engine -> Application`
+  * Docker **shares the host OS kernel** across all running containers. It only virtualizes and isolates the **application layer** (your app code and its specific dependencies). Because it doesn't need to boot a separate kernel for every app, Docker is significantly faster, more lightweight, and uses far less memory than a VM.
+
+## Docker Toolbox
+**What is it?** Docker Toolbox is a legacy installer and toolset for older Windows and Mac systems. 
+**When to use it?** You generally **should not** use it today unless you are on a very old machine. It was designed for older operating systems that did not meet the requirements for the modern "Docker Desktop" application (specifically, systems that lacked native Hyper-V or Hypervisor framework support). 
+**Its Purpose:** Because Docker requires a Linux kernel to run, older Macs and Windows PCs couldn't run it natively. Docker Toolbox solved this by installing Oracle VirtualBox and automatically spinning up a tiny Linux VM in the background. It then ran the Docker Engine *inside* that VM. Today, Docker Desktop uses modern, native virtualization (like WSL2 on Windows) making Toolbox obsolete.
 
 ## What is Docker Hub?
 Docker Hub is a cloud-based registry service provided by Docker. It is the largest repository of container images in the world. Developers use Docker Hub to find, store, share, and manage container images. When you run a command like `docker pull ubuntu`, Docker automatically connects to Docker Hub to download the `ubuntu` image.
