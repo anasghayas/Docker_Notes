@@ -53,6 +53,14 @@ Used to gracefully stop one or more running containers.
 docker stop [CONTAINER_ID or NAME]
 ```
 
+### `docker rm`
+Used to completely delete a stopped container from your system. You cannot remove a running container unless you force it (with the `-f` flag) or stop it first.
+
+**Syntax:**
+```bash
+docker rm [CONTAINER_ID or NAME]
+```
+
 ### `docker exec`
 Used to run a new command inside an *already running* container. This is extremely useful for troubleshooting or inspecting the inside of a container.
 
@@ -86,6 +94,26 @@ Used to list all the Docker images currently downloaded and stored locally on yo
 **Syntax:**
 ```bash
 docker images
+```
+
+### `docker build`
+Used to create a new Docker image from a `Dockerfile`.
+
+**Syntax:**
+```bash
+docker build -t [IMAGE_NAME]:[VERSION] [PATH_TO_DOCKERFILE]
+```
+**Common Uses:**
+* `docker build -t my_app:1.0 .`
+  * **`-t my_app:1.0`**: "Tags" the image with the name `my_app` and the version `1.0`.
+  * **`.` (The dot)**: This is crucial. It tells Docker to look for the `Dockerfile` and build context in the **current directory**.
+
+### `docker rmi`
+Used to completely delete an image from your local system. Note that you cannot remove an image if a container (even a stopped one) is currently using it.
+
+**Syntax:**
+```bash
+docker rmi [IMAGE_ID or NAME]
 ```
 
 ## Network Management
