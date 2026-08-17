@@ -14,9 +14,13 @@ docker run [OPTIONS] IMAGE[:TAG] [COMMAND] [ARG...]
 
 **Common Examples & Uses:**
 * `docker run ubuntu:22.04` - Runs a container using the Ubuntu 22.04 image.
-* `docker run -d nginx` - Runs an Nginx container in "detached" mode (in the background so it doesn't block your terminal).
-* `docker run -p 8080:80 nginx` - Maps port `80` of the Nginx container to port `8080` on your local machine (so you can view it at `localhost:8080` in your browser).
-* `docker run -it ubuntu bash` - Runs an Ubuntu container interactively (`-i`) and attaches a terminal (`-t`), opening a `bash` shell so you can type commands directly inside the container.
+* `docker run -it ubuntu bash` - Runs an Ubuntu container interactively (`-i`) and attaches a terminal (`-t`), opening a `bash` shell.
+
+**Port Binding & Naming Examples:**
+* **Bind a Port:** `docker run -p [host_port]:[container_port] [image]:[tag]`
+  *(Example: `docker run -p 8080:80 nginx:latest` maps port 80 inside the container to port 8080 on your host machine).*
+* **Name a Container & Run in Background:** `docker run -d -p 8080:80 --name my_web_server nginx:latest`
+  *(Runs detached `-d`, maps the port, and explicitly assigns the name `my_web_server` to the container).*
 
 ## Container Management
 
@@ -49,6 +53,20 @@ Used to gracefully stop one or more running containers.
 docker stop [CONTAINER_ID or NAME]
 ```
 
+### `docker exec`
+Used to run a new command inside an *already running* container. This is extremely useful for troubleshooting or inspecting the inside of a container.
+
+**Syntax:**
+```bash
+docker exec [OPTIONS] [CONTAINER_ID or NAME] [COMMAND]
+```
+**Common Uses (Going inside a container):**
+* `docker exec -it my_container /bin/bash`
+  * **`-it`**: Stands for **interactive** (`-i`) and allocates a **tty/terminal** (`-t`), allowing you to type commands.
+  * **`/bin/bash`**: Opens the bash shell. 
+  * *Note:* If `bash` doesn't work (which is common in minimal images like Alpine), try using `sh` instead: `docker exec -it my_container sh`.
+  * Once inside, you can use standard Linux commands. For example, `cd /` will take you to the root directory.
+
 ### `docker logs`
 Used to fetch the logs of a container. This is essential for debugging applications that are running in the background (detached mode).
 
@@ -69,3 +87,22 @@ Used to list all the Docker images currently downloaded and stored locally on yo
 ```bash
 docker images
 ```
+
+## Network Management
+
+### `docker network ls`
+Used to list all the virtual networks currently managed by Docker on your machine.
+
+**Syntax:**
+```bash
+docker network ls
+```
+
+### `docker network create`
+Used to create a brand new, custom Docker network. Containers connected to the same custom network can talk to each other securely using their container names.
+
+**Syntax:**
+```bash
+docker network create [NETWORK_NAME]
+```
+*Example: `docker network create my-custom-network`*
