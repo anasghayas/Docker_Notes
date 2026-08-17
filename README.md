@@ -82,3 +82,41 @@ When pulling images from Docker Hub, it is best practice to always specify a **v
 
 * **The Danger of `:latest`**: The `:latest` tag is mutable, meaning the image it points to can change over time. If you build your application on Monday using the `:latest` image, and then pull it again on Friday, the `:latest` image might have been updated by the maintainer to a newer version. This could introduce breaking changes or unexpected behavior in your application, even though you didn't change your own code.
 * **Reproducibility**: By using a specific version tag (e.g., `ubuntu:22.04` or `nginx:1.21.6`), you ensure **reproducibility**. You lock your application to a specific, immutable snapshot of the base image, guaranteeing that it will behave the same way today as it will tomorrow.
+
+## Docker Ports and Networking
+
+When you run an application inside a container, that application is running in an isolated environment. If a web server inside a container is listening on port `80`, your computer (the "Host") cannot see it by default. To access it, you must **bind** or **map** a port on your host machine to the port inside the container.
+
+### Host Port vs. Container Port
+When using the `-p` flag in `docker run -p [HOST_PORT]:[CONTAINER_PORT]`:
+* **Host Port:** The port on your physical machine (e.g., your laptop). This is the port you type into your web browser (`localhost:8080`).
+* **Container Port:** The internal port that the application inside the container is actively listening on.
+
+### Can multiple containers use the same Container Port?
+**YES! Your statement is 100% correct:** *"As long as we bind the containers to different host machine ports, container ports can be the same; they can listen on the same port."*
+
+Because containers are isolated from each other, they don't share the same internal network space. You can run two completely different versions of an application (or two completely different applications entirely) that both think they are listening on port `80`. As long as you map them to **different** ports on your physical Host machine, there is no conflict!
+
+### Port Mapping Diagram
+Here is a visual representation of running two different versions of an Nginx web server at the same time. Both containers are internally listening on their own port `80`, but they are mapped to different Host ports.
+
+```mermaid
+flowchart LR
+    subgraph Host Machine (Your Laptop)
+        Browser1["Browser -> localhost:8080"]
+        Browser2["Browser -> localhost:8081"]
+        
+        subgraph Docker Engine
+            AppV1["Nginx v1.0 Container<br>Listening on Port 80"]
+            AppV2["Nginx v2.0 Container<br>Listening on Port 80"]
+        end
+    end
+
+    Browser1 == "Traffic hits Host Port 8080" ==> AppV1
+    Browser2 == "Traffic hits Host Port 8081" ==> AppV2
+
+    style Host Machine fill:#f9f9f9,stroke:#333,stroke-width:2px
+    style Docker Engine fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
+    style AppV1 fill:#dcedc8,stroke:#689f38,stroke-width:2px
+    style AppV2 fill:#dcedc8,stroke:#689f38,stroke-width:2px
+```
