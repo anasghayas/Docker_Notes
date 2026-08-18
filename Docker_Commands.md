@@ -134,3 +134,26 @@ Used to create a brand new, custom Docker network. Containers connected to the s
 docker network create [NETWORK_NAME]
 ```
 *Example: `docker network create my-custom-network`*
+
+## Docker Compose Management
+
+### `docker-compose up`
+Used to build, (re)create, start, and attach to containers for a service defined in a Compose file. 
+
+**Syntax:**
+```bash
+docker-compose -f [FILE_NAME] up [OPTIONS]
+```
+*Note: If your file is named `docker-compose.yaml`, you don't need the `-f` flag. You can just type `docker-compose up`.*
+
+**Common Examples:**
+* `docker-compose -f mongo.yaml up` - Starts the containers defined in the `mongo.yaml` file.
+* `docker-compose up -d` - Starts the services in detached mode (in the background).
+
+### `docker-compose down`
+Used to stop and remove containers and networks created by `docker-compose up`.
+
+**Syntax:**
+```bash
+docker-compose -f [FILE_NAME] down
+```
