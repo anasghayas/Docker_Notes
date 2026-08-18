@@ -120,3 +120,36 @@ flowchart LR
     style AppV1 fill:#dcedc8,stroke:#689f38,stroke-width:2px
     style AppV2 fill:#dcedc8,stroke:#689f38,stroke-width:2px
 ```
+
+## Docker Compose
+When building applications, you often need multiple services running together (e.g., a database, a backend server, and a frontend UI). Instead of running multiple long, complicated `docker run` commands manually, you can use **Docker Compose**.
+
+Docker Compose allows you to define and run multi-container Docker applications using a single YAML configuration file.
+
+### Example: MongoDB & Mongo Express
+Here is an example of a compose file (e.g., `mongo.yaml`) that spins up both a MongoDB database and Mongo Express (a web-based UI for MongoDB) at the same time, automatically connecting them together via a shared network.
+
+```yaml
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+
+  mongo-express:
+    image: mongo-express
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+```
+
+### A Note on Data Persistence (Volumes)
+By default, **when a container is restarted or deleted, any data created inside it is lost!** If you restarted the `mongodb` container above, all your database records would vanish. To solve this, we need to use **Volumes** to map data safely to our host machine. *(We will deep-dive into Volumes later).*
