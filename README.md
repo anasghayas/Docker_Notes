@@ -126,6 +126,9 @@ When building applications, you often need multiple services running together (e
 
 Docker Compose allows you to define and run multi-container Docker applications using a single YAML configuration file.
 
+### Configuration as Code (Infrastructure as Code)
+It is important to remember that **the `Dockerfile` and the `docker-compose.yaml` file are considered part of your main application code**. They should be committed to your version control system (like Git) right alongside your source code. This ensures that anyone who downloads your code can instantly spin up the exact same environment to run it.
+
 ### Example: MongoDB & Mongo Express
 Here is an example of a compose file (e.g., `mongo.yaml`) that spins up both a MongoDB database and Mongo Express (a web-based UI for MongoDB) at the same time, automatically connecting them together via a shared network.
 
