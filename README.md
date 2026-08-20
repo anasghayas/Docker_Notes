@@ -37,6 +37,9 @@ A Docker repository is a collection of related Docker images, often different ve
 ## Docker Image Layers
 A Docker image is built up from a series of layers. Each layer represents an instruction in the image's `Dockerfile`. 
 
+### The `FROM` Keyword (Base Images)
+Every single Docker image is based on another image. When you create your own `Dockerfile`, the very first instruction you must write is the `FROM` keyword to specify which existing image you want to build on top of. Think of it as the foundation of your house (e.g., `FROM ubuntu:22.04` or `FROM python:3.9`).
+
 ### Why Alpine Linux?
 You will often see Docker images built on top of **Alpine Linux**. Alpine is a minimal, security-oriented, and extremely lightweight Linux distribution. 
 * **Tiny Size:** The base Alpine image is only about **5MB** in size.
