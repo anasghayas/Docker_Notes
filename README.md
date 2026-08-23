@@ -67,6 +67,15 @@ graph BT
     style Base fill:#cce5ff,stroke:#004085,stroke-width:2px,color:#004085
 ```
 
+## Dockerfile Best Practices
+When writing a `Dockerfile` to create your own images, keep these critical points in mind:
+
+* **File Naming & Format:** A `Dockerfile` is a plain text file. By default, Docker expects it to be named exactly `Dockerfile` (with a capital 'D' and absolutely no file extension). This is different from Docker Compose, which expects a YAML extension (e.g., `docker-compose.yaml`).
+* **Rebuilding is Required:** Docker images are static blueprints. Whenever you make an adjustment or change a line inside your `Dockerfile`, those changes do not magically appear in your currently running containers. You **must** rebuild the image using the `docker build` command to bake those changes into a new image layer.
+* **Optimization (Copying Files):** When bringing your source code into a container, it is poor practice to blindly copy your entire project folder into the container's root directory. Instead, you should:
+  1. Create a dedicated working folder inside the container (e.g., using the `WORKDIR /app` command).
+  2. Selectively copy only the necessary files or folders into that app directory (e.g., `COPY src/ /app/src/`). 
+  This keeps your image organized, reduces its size, and prevents you from accidentally copying massive or unnecessary local folders (like hidden `.git` directories or local dependency folders) into your production image.
 ## Running an Image Locally
 To run an image locally, you use the `docker run` command followed by the image name and its version (which is called a tag).
 
