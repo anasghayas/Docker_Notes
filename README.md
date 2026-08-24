@@ -34,6 +34,26 @@ A Docker repository is a collection of related Docker images, often different ve
 * **Public Repository:** A public repository is visible and accessible to everyone on the internet. Anyone can search for, download (pull), and use the images stored in a public repository without needing to log in. Docker Hub hosts many official public repositories for popular software like Nginx, Python, and MySQL.
 * **Private Repository:** A private repository is restricted and only accessible to authorized users or systems. You need specific credentials (like a username and password or an access token) to view, download (pull), or upload (push) images. This is essential for companies and developers who want to keep their proprietary application code and custom images secure and confidential.
 
+### Amazon ECR (Elastic Container Registry)
+While Docker Hub is the default, many enterprises use private cloud-based registries. A prime example is **Amazon ECR**. 
+* **What is AWS?** Amazon Web Services (AWS) is the world's most widely used cloud computing platform, offering infrastructure like servers, databases, and storage over the internet.
+* **What is ECR?** ECR is AWS's fully-managed Docker container registry. It allows developers to securely store, manage, and deploy Docker container images.
+
+**Steps to use Amazon ECR:**
+1. **Create the Repo:** Go to the AWS Console, search for "Elastic Container Registry", and create a new repository. In AWS, one repository is typically dedicated to one specific application or image, and you save different versions (tags) of that app inside that single repository.
+2. **Configure Authentication:** You must have the AWS CLI (Command Line Interface) installed and your AWS credentials configured on your machine.
+3. **Login:** Use the AWS CLI to generate an authentication token and pass it to the `docker login` command to authenticate your local Docker engine with AWS.
+4. **Tag & Push:** (See the Docker Commands file for `docker tag` and `docker push`).
+
+### Image Naming in Docker Registries
+To push an image to a specific registry like AWS ECR, you must understand Docker's strict image naming convention:
+`[REGISTRY_DOMAIN]/[IMAGE_NAME]:[TAG]`
+
+When you run a command like `docker pull mongo:4.2`, Docker implicitly fills in the blanks for Docker Hub. It is actually running:
+`docker pull docker.io/library/mongo:4.2`
+
+However, when pushing to a private registry like Amazon ECR, **you must use the full registry domain name** (e.g., `123456789012.dkr.ecr.us-east-1.amazonaws.com/my-app:1.0`). If you don't provide the domain, Docker will mistakenly try to push your private company image to the public Docker Hub!
+
 ## Docker Image Layers
 A Docker image is built up from a series of layers. Each layer represents an instruction in the image's `Dockerfile`. 
 
