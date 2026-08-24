@@ -116,6 +116,26 @@ Used to completely delete an image from your local system. Note that you cannot 
 docker rmi [IMAGE_ID or NAME]
 ```
 
+### `docker tag`
+Used to rename or duplicate an image to a new name or tag. This is especially important when you need to push a local image to a specific remote registry (like Amazon ECR) because the image name must contain the full registry domain.
+
+**Syntax:**
+```bash
+docker tag [LOCAL_IMAGE_NAME]:[VERSION] [REGISTRY_DOMAIN]/[NEW_IMAGE_NAME]:[VERSION]
+```
+*Example: `docker tag my-app:1.0 123456789012.dkr.ecr.us-east-1.amazonaws.com/my-app:1.0`*
+
+### `docker push`
+Used to upload a local Docker image to a remote Docker registry (like Docker Hub or Amazon ECR) so it can be pulled by other servers or users.
+
+**Syntax:**
+```bash
+docker push [IMAGE_NAME]:[TAG]
+```
+*Example: `docker push 123456789012.dkr.ecr.us-east-1.amazonaws.com/my-app:1.0`*
+
+*(Note: When pushing to AWS ECR, you must first authenticate your Docker engine using the AWS CLI. The command generally looks like this: `aws ecr get-login-password | docker login --username AWS --password-stdin [REGISTRY_DOMAIN]`)*
+
 ## Network Management
 
 ### `docker network ls`
