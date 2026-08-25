@@ -188,3 +188,18 @@ services:
 
 ### A Note on Data Persistence (Volumes)
 By default, **when a container is restarted or deleted, any data created inside it is lost!** If you restarted the `mongodb` container above, all your database records would vanish. To solve this, we need to use **Volumes** to map data safely to our host machine. *(We will deep-dive into Volumes later).*
+
+### Deploying to a Development Server
+When it's time to deploy your application to a development server (e.g., an EC2 instance on AWS), you use Docker Compose to spin everything up at once. 
+
+You should include **all** the images required for your application in the `docker-compose.yaml` file, including third-party services (like databases) and your own custom application image (e.g., your `my-app` image). This single file becomes the master plan for the server.
+
+**Typical Deployment Workflow:**
+1. **Login to your Registry:** SSH into your development server and log in to your private registry via the CLI (e.g., using the AWS CLI command for ECR) so the server has permission to pull your custom `my-app` image.
+2. **Create the Compose File:** Create your Compose file directly on the server. A common way to do this quickly via the command line is using the `vim` text editor:
+   * Run `vim docker-compose.yaml` (or `vim compose.yaml`).
+   * Press `i` to enter "Insert mode".
+   * Copy and paste your YAML configuration content into the terminal.
+   * Press `Esc` to exit Insert mode.
+   * Type `:wq` (write and quit) and press `Enter` to save the file.
+3. **Deploy:** Finally, run `docker-compose up -d` to pull the images and launch all the applications and services in the background. Your development server is now fully running!
