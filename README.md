@@ -186,8 +186,28 @@ services:
       - ME_CONFIG_MONGODB_SERVER=mongodb
 ```
 
-### A Note on Data Persistence (Volumes)
-By default, **when a container is restarted or deleted, any data created inside it is lost!** If you restarted the `mongodb` container above, all your database records would vanish. To solve this, we need to use **Volumes** to map data safely to our host machine. *(We will deep-dive into Volumes later).*
+## Docker Volumes (Data Persistence)
+By default, **when a container is restarted or deleted, any data created inside it is lost!** To make data persistent, we use **Docker Volumes**.
+
+A volume works by mounting a folder from your physical host machine's file system directly into the virtual file system of the Docker container. 
+* When the application writes data inside the container, it is instantly replicated and saved to the physical host file system. 
+* If you modify the files on the host file system, those changes are immediately visible inside the container.
+
+### The 3 Types of Docker Volumes
+When running a container with the `-v` (volume) flag, there are three different approaches you can take:
+
+1. **Host Volume (Bind Mount)**
+   You explicitly tell Docker which exact folder on your host machine to link to the container. This is great for local development (e.g., live-reloading code).
+   * **Syntax:** `docker run -v [HOST_PATH]:[CONTAINER_PATH] image_name`
+   * *Example:* `docker run -v /home/user/app:/var/lib/mysql mysql`
+2. **Anonymous Volume**
+   You only specify the container path. Docker will automatically create a hidden, randomly-named folder on your host machine to store the data. It's difficult to find and manage this data later.
+   * **Syntax:** `docker run -v [CONTAINER_PATH] image_name`
+   * *Example:* `docker run -v /var/lib/mysql mysql`
+3. **Named Volume**
+   The most common and recommended approach for databases. It is an updated version of the anonymous volume. You provide a human-readable name, and Docker manages the storage location on the host for you. You can easily reference this volume by name across multiple containers.
+   * **Syntax:** `docker run -v [VOLUME_NAME]:[CONTAINER_PATH] image_name`
+   * *Example:* `docker run -v my_db_data:/var/lib/mysql mysql`
 
 ### Deploying to a Development Server
 When it's time to deploy your application to a development server (e.g., an EC2 instance on AWS), you use Docker Compose to spin everything up at once. 
