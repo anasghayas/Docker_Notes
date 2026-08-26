@@ -22,6 +22,14 @@ docker run [OPTIONS] IMAGE[:TAG] [COMMAND] [ARG...]
 * **Name a Container & Run in Background:** `docker run -d -p 8080:80 --name my_web_server nginx:latest`
   *(Runs detached `-d`, maps the port, and explicitly assigns the name `my_web_server` to the container).*
 
+**Volume Mounting Examples:**
+* **Host Volume:** `docker run -v [host_path]:[container_path] [image]`
+  *(Example: `docker run -v /home/user/app:/var/lib/mysql mysql`)*
+* **Anonymous Volume:** `docker run -v [container_path] [image]`
+  *(Example: `docker run -v /var/lib/mysql mysql`)*
+* **Named Volume:** `docker run -v [volume_name]:[container_path] [image]`
+  *(Example: `docker run -v my_db_data:/var/lib/mysql mysql`)*
+
 ## Container Management
 
 ### `docker ps`
