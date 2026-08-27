@@ -175,6 +175,8 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - mongo_db_data:/data/db
 
   mongo-express:
     image: mongo-express
@@ -184,7 +186,11 @@ services:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
       - ME_CONFIG_MONGODB_ADMINPASSWORD=password
       - ME_CONFIG_MONGODB_SERVER=mongodb
+
+volumes:
+  mongo_db_data:
 ```
+*(Notice how the `volumes` mapping is defined on the `mongodb` service just below the `environment` and `ports` links, and then the actual **named volume** (`mongo_db_data`) is declared at the very bottom of the file. Named volumes are the standard approach for persisting database data in Docker Compose!)*
 
 ## Docker Volumes (Data Persistence)
 By default, **when a container is restarted or deleted, any data created inside it is lost!** To make data persistent, we use **Docker Volumes**.
