@@ -189,8 +189,9 @@ services:
 
 volumes:
   mongo_db_data:
+    driver: local
 ```
-*(Notice how the `volumes` mapping is defined on the `mongodb` service just below the `environment` and `ports` links, and then the actual **named volume** (`mongo_db_data`) is declared at the very bottom of the file. Named volumes are the standard approach for persisting database data in Docker Compose!)*
+*(Notice how the `volumes` mapping is defined on the `mongodb` service just below the `environment` and `ports` links, and then the actual **named volume** (`mongo_db_data`) is declared at the very bottom of the file. By specifying `driver: local`, you explicitly tell Docker to create the persistent database volume on the local host. Named volumes are the standard approach for persisting database data in Docker Compose!)*
 
 ## Docker Volumes (Data Persistence)
 By default, **when a container is restarted or deleted, any data created inside it is lost!** To make data persistent, we use **Docker Volumes**.
@@ -198,6 +199,11 @@ By default, **when a container is restarted or deleted, any data created inside 
 A volume works by mounting a folder from your physical host machine's file system directly into the virtual file system of the Docker container. 
 * When the application writes data inside the container, it is instantly replicated and saved to the physical host file system. 
 * If you modify the files on the host file system, those changes are immediately visible inside the container.
+
+**Where are these volumes physically stored?**
+* **Windows:** `C:\ProgramData\docker\volumes`
+* **Linux:** `/var/lib/docker/volumes`
+* **Mac:** Docker for Mac actually creates a hidden Linux virtual machine behind the scenes and stores all the Docker data there. *(Mac Tip: If you ever use a `screen` session to access background terminals, you can use `Ctrl+A` followed by `K` to quickly kill the screen!)*
 
 ### The 3 Types of Docker Volumes
 When running a container with the `-v` (volume) flag, there are three different approaches you can take:
@@ -229,3 +235,10 @@ You should include **all** the images required for your application in the `dock
    * Press `Esc` to exit Insert mode.
    * Type `:wq` (write and quit) and press `Enter` to save the file.
 3. **Deploy:** Finally, run `docker-compose up -d` to pull the images and launch all the applications and services in the background. Your development server is now fully running!
+
+## Container Orchestration & Kubernetes
+As your application grows, you might find yourself managing dozens or hundreds of containers spread across multiple servers. Manually starting, stopping, and monitoring them with Docker Compose becomes impossible. This is where **Container Orchestration** comes in.
+
+An orchestrator automatically handles the deployment, scaling, load balancing, and networking of containers. If a container crashes, the orchestrator automatically restarts it. If traffic spikes, it spins up more containers.
+
+**Kubernetes (K8s)** is the most popular, industry-standard container orchestration platform originally developed by Google. While Docker Compose is great for local development and single-server deployments, Kubernetes is the tool you use to manage massive clusters of containers in production environments.
