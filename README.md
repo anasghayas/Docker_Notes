@@ -134,11 +134,11 @@ Here is a visual representation of running two different versions of an Nginx we
 
 ```mermaid
 flowchart LR
-    subgraph Host Machine (Your Laptop)
+    subgraph HostMachine["Host Machine (Your Laptop)"]
         Browser1["Browser -> localhost:8080"]
         Browser2["Browser -> localhost:8081"]
         
-        subgraph Docker Engine
+        subgraph DockerEngine["Docker Engine"]
             AppV1["Nginx v1.0 Container<br>Listening on Port 80"]
             AppV2["Nginx v2.0 Container<br>Listening on Port 80"]
         end
@@ -147,8 +147,8 @@ flowchart LR
     Browser1 == "Traffic hits Host Port 8080" ==> AppV1
     Browser2 == "Traffic hits Host Port 8081" ==> AppV2
 
-    style Host Machine fill:#f9f9f9,stroke:#333,stroke-width:2px
-    style Docker Engine fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
+    style HostMachine fill:#f9f9f9,stroke:#333,stroke-width:2px
+    style DockerEngine fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
     style AppV1 fill:#dcedc8,stroke:#689f38,stroke-width:2px
     style AppV2 fill:#dcedc8,stroke:#689f38,stroke-width:2px
 ```
@@ -228,7 +228,6 @@ You should include **all** the images required for your application in the `dock
 
 **Full CI/CD & Deployment Workflow:**
 ![Workflow with Docker](./public/workflow_with_docker.png)
-*(Please save the image as `workflow_with_docker.png` inside the `public/` folder so it renders correctly!)*
 
 **Typical Deployment Workflow:**
 1. **Login to your Registry:** SSH into your development server and log in to your private registry via the CLI (e.g., using the AWS CLI command for ECR) so the server has permission to pull your custom `my-app` image.
