@@ -226,6 +226,10 @@ When it's time to deploy your application to a development server (e.g., an EC2 
 
 You should include **all** the images required for your application in the `docker-compose.yaml` file, including third-party services (like databases) and your own custom application image (e.g., your `my-app` image). This single file becomes the master plan for the server.
 
+**Full CI/CD & Deployment Workflow:**
+![Workflow with Docker](./workflow_with_docker.png)
+*(Please save the image as `workflow_with_docker.png` in the same directory as this README so it renders correctly!)*
+
 **Typical Deployment Workflow:**
 1. **Login to your Registry:** SSH into your development server and log in to your private registry via the CLI (e.g., using the AWS CLI command for ECR) so the server has permission to pull your custom `my-app` image.
 2. **Create the Compose File:** Create your Compose file directly on the server. A common way to do this quickly via the command line is using the `vim` text editor:
