@@ -1,6 +1,37 @@
 # My Docker Learning Notes
 These are my notes as I learn Docker.
 
+## Table of Contents
+- [What is Docker?](#what-is-docker)
+- [Images vs. Containers](#images-vs-containers)
+- [Docker vs. Virtual Machines (VMs)](#docker-vs-virtual-machines-vms)
+- [Docker Toolbox](#docker-toolbox)
+- [What is Docker Hub?](#what-is-docker-hub)
+  - [Docker Repositories](#docker-repositories)
+  - [Amazon ECR (Elastic Container Registry)](#amazon-ecr-elastic-container-registry)
+  - [Image Naming in Docker Registries](#image-naming-in-docker-registries)
+- [Docker Image Layers](#docker-image-layers)
+  - [The `FROM` Keyword (Base Images)](#the-from-keyword-base-images)
+  - [Why Alpine Linux?](#why-alpine-linux)
+  - [Image Layer Diagram](#image-layer-diagram)
+- [Dockerfile Best Practices](#dockerfile-best-practices)
+- [Running an Image Locally](#running-an-image-locally)
+  - [Layer Caching & Downloading](#layer-caching--downloading)
+  - [Why Tag a Version?](#why-tag-a-version)
+- [Docker Ports and Networking](#docker-ports-and-networking)
+  - [Host Port vs. Container Port](#host-port-vs-container-port)
+  - [Can multiple containers use the same Container Port?](#can-multiple-containers-use-the-same-container-port)
+  - [Port Mapping Diagram](#port-mapping-diagram)
+- [Docker Compose](#docker-compose)
+  - [Configuration as Code (Infrastructure as Code)](#configuration-as-code-infrastructure-as-code)
+  - [Example: MongoDB & Mongo Express](#example-mongodb--mongo-express)
+- [Docker Volumes (Data Persistence)](#docker-volumes-data-persistence)
+  - [The 3 Types of Docker Volumes](#the-3-types-of-docker-volumes)
+  - [Deploying to a Development Server](#deploying-to-a-development-server)
+- [Container Orchestration & Kubernetes](#container-orchestration--kubernetes)
+
+---
+
 ## What is Docker?
 Docker is an open-source platform that enables developers to build, deploy, run, update, and manage containers. Containers are standardized, executable components that combine application source code with the operating system (OS) libraries and dependencies required to run that code in any environment.
 
