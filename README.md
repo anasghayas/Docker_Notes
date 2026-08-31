@@ -2,33 +2,20 @@
 These are my notes as I learn Docker.
 
 ## Table of Contents
-- [What is Docker?](#what-is-docker)
-- [Images vs. Containers](#images-vs-containers)
-- [Docker vs. Virtual Machines (VMs)](#docker-vs-virtual-machines-vms)
-- [Docker Toolbox](#docker-toolbox)
-- [What is Docker Hub?](#what-is-docker-hub)
-  - [Docker Repositories](#docker-repositories)
-  - [Amazon ECR (Elastic Container Registry)](#amazon-ecr-elastic-container-registry)
-  - [Image Naming in Docker Registries](#image-naming-in-docker-registries)
-- [Docker Image Layers](#docker-image-layers)
-  - [The `FROM` Keyword (Base Images)](#the-from-keyword-base-images)
-  - [Why Alpine Linux?](#why-alpine-linux)
-  - [Image Layer Diagram](#image-layer-diagram)
-- [Dockerfile Best Practices](#dockerfile-best-practices)
-- [Running an Image Locally](#running-an-image-locally)
-  - [Layer Caching & Downloading](#layer-caching--downloading)
-  - [Why Tag a Version?](#why-tag-a-version)
-- [Docker Ports and Networking](#docker-ports-and-networking)
-  - [Host Port vs. Container Port](#host-port-vs-container-port)
-  - [Can multiple containers use the same Container Port?](#can-multiple-containers-use-the-same-container-port)
-  - [Port Mapping Diagram](#port-mapping-diagram)
-- [Docker Compose](#docker-compose)
-  - [Configuration as Code (Infrastructure as Code)](#configuration-as-code-infrastructure-as-code)
-  - [Example: MongoDB & Mongo Express](#example-mongodb--mongo-express)
-- [Docker Volumes (Data Persistence)](#docker-volumes-data-persistence)
-  - [The 3 Types of Docker Volumes](#the-3-types-of-docker-volumes)
-  - [Deploying to a Development Server](#deploying-to-a-development-server)
-- [Container Orchestration & Kubernetes](#container-orchestration--kubernetes)
+| Primary Topic | Sub-Topics |
+| :--- | :--- |
+| [What is Docker?](#what-is-docker) | |
+| [Images vs. Containers](#images-vs-containers) | |
+| [Docker vs. Virtual Machines (VMs)](#docker-vs-virtual-machines-vms) | |
+| [Docker Toolbox](#docker-toolbox) | |
+| [What is Docker Hub?](#what-is-docker-hub) | <ul><li>[Docker Repositories](#docker-repositories)</li><li>[Amazon ECR](#amazon-ecr-elastic-container-registry)</li><li>[Image Naming](#image-naming-in-docker-registries)</li></ul> |
+| [Docker Image Layers](#docker-image-layers) | <ul><li>[The `FROM` Keyword](#the-from-keyword-base-images)</li><li>[Why Alpine Linux?](#why-alpine-linux)</li><li>[Image Layer Diagram](#image-layer-diagram)</li></ul> |
+| [Dockerfile Best Practices](#dockerfile-best-practices) | |
+| [Running an Image Locally](#running-an-image-locally) | <ul><li>[Layer Caching & Downloading](#layer-caching--downloading)</li><li>[Why Tag a Version?](#why-tag-a-version)</li></ul> |
+| [Docker Ports and Networking](#docker-ports-and-networking) | <ul><li>[Host Port vs. Container Port](#host-port-vs-container-port)</li><li>[Same Container Ports?](#can-multiple-containers-use-the-same-container-port)</li><li>[Port Mapping Diagram](#port-mapping-diagram)</li></ul> |
+| [Docker Compose](#docker-compose) | <ul><li>[Configuration as Code](#configuration-as-code-infrastructure-as-code)</li><li>[Example: MongoDB & Mongo Express](#example-mongodb--mongo-express)</li></ul> |
+| [Docker Volumes (Data Persistence)](#docker-volumes-data-persistence) | <ul><li>[The 3 Types of Docker Volumes](#the-3-types-of-docker-volumes)</li><li>[Deploying to a Development Server](#deploying-to-a-development-server)</li></ul> |
+| [Container Orchestration & Kubernetes](#container-orchestration--kubernetes) | |
 
 ---
 
