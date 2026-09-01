@@ -16,6 +16,7 @@ These are my notes as I learn Docker.
 | [Docker Compose](#docker-compose) | <ul><li>[Configuration as Code](#configuration-as-code-infrastructure-as-code)</li><li>[Example: MongoDB & Mongo Express](#example-mongodb--mongo-express)</li></ul> |
 | [Docker Volumes (Data Persistence)](#docker-volumes-data-persistence) | <ul><li>[The 3 Types of Docker Volumes](#the-3-types-of-docker-volumes)</li><li>[Deploying to a Development Server](#deploying-to-a-development-server)</li></ul> |
 | [Container Orchestration & Kubernetes](#container-orchestration--kubernetes) | |
+| [Acknowledgements & Resources](#acknowledgements--resources) | |
 
 ---
 
@@ -263,3 +264,12 @@ As your application grows, you might find yourself managing dozens or hundreds o
 An orchestrator automatically handles the deployment, scaling, load balancing, and networking of containers. If a container crashes, the orchestrator automatically restarts it. If traffic spikes, it spins up more containers.
 
 **Kubernetes (K8s)** is the most popular, industry-standard container orchestration platform originally developed by Google. While Docker Compose is great for local development and single-server deployments, Kubernetes is the tool you use to manage massive clusters of containers in production environments.
+
+---
+
+## Acknowledgements & Resources
+A massive thank you to **TechWorld with Nana** for the incredible educational content that made these notes possible! If you are looking to master Docker and Kubernetes, her tutorials are highly recommended:
+
+* [Docker Full Playlist](https://www.youtube.com/playlist?list=PLy7NrYWoggjzfAHlUusx2wuDwfCrmJYcs)
+* [Docker Tutorial for Beginners (One-Shot Course)](https://www.youtube.com/watch?v=3c-iBn73dDE&list=WL&index=32&t=4206s)
+* [Kubernetes Tutorial for Beginners (One-Shot Course)](https://www.youtube.com/watch?v=X48VuDVv0do&list=WL&index=34&t=5s)
