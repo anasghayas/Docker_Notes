@@ -1,9 +1,6 @@
 # My Docker Learning Notes
 These are my notes as I learn Docker. 
 
-> [!TIP]
-> 🚀 **Looking for commands?** Check out my dedicated **[Docker CLI Command Reference](./Docker_Commands.md)** for a cheat sheet of all the essential commands!
-
 ## Table of Contents
 | Primary Topic | Sub-Topics |
 | :--- | :--- |
@@ -276,3 +273,8 @@ A massive thank you to **TechWorld with Nana** for the incredible educational co
 * [Docker Full Playlist](https://www.youtube.com/playlist?list=PLy7NrYWoggjzfAHlUusx2wuDwfCrmJYcs)
 * [Docker Tutorial for Beginners (One-Shot Course)](https://www.youtube.com/watch?v=3c-iBn73dDE&list=WL&index=32&t=4206s)
 * [Kubernetes Tutorial for Beginners (One-Shot Course)](https://www.youtube.com/watch?v=X48VuDVv0do&list=WL&index=34&t=5s)
+
+---
+
+> [!TIP]
+> 🚀 **Looking for commands?** Check out my dedicated **[Docker CLI Command Reference](./Docker_Commands.md)** for a cheat sheet of all the essential commands!
