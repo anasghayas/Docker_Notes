@@ -89,6 +89,20 @@ Below is an illustration of how layers stack on top of each other. The bottom la
 
 When you start a container from the image, Docker adds a thin, temporary **read/write** layer on the very top for any runtime modifications.
 
+<!--
+Q29uZ3JhdHVsYXRpb25zLCB5b3UgYXJlIG9uZSBzdGVwIGNsb3Nlcg==
+Tm90aGluZyB0byBzZWUgaGVyZSwgYnV0IGtlZXAgZGlnZ2luZw==
+R0lCQkVSSVNIIGxpbmUgbnVtYmVyIHRocmVl
+V2h5IGFyZSB5b3UgZGVjb2RpbmcgdGhpcz8=
+c29tZV9yYW5kb21fdmFsdWVzX2FuZF9oYXNoZXM=
+PANTHEON{wh@7_c0l0ur_!$_y0ur_c9}
+0x48656c6c6f20576f726c64
+c3RpbGxfZ29pbmdfYXJlX3dlPw==
+YWxtb3N0X2F0X3RoZV9ib3R0b20=
+bWF5YmVfdGhlX2ZsYWdfaXNfZWxzZXdoZXJl
+Z29vZGJ5ZV9hbmRfZ29vZF9sdWNr
+-->
+
 ```mermaid
 graph BT
     Base["Base Image Layer <br> <b>Alpine Linux OS</b> <br> (~5MB, Read-Only)"]
