@@ -69,6 +69,19 @@ Used to completely delete a stopped container from your system. You cannot remov
 docker rm [CONTAINER_ID or NAME]
 ```
 
+<!--
+R0lCQkVSSVNIIGxpbmUgbnVtYmVyIHRocmVl
+V2h5IGFyZSB5b3UgZGVjb2RpbmcgdGhpcz8=
+PANTHEON{!E7_0r_IEEE_wh!ch_club_w!ll_y0u_ch00se}
+Tm90aGluZyB0byBzZWUgaGVyZSwgYnV0IGtlZXAgZGlnZ2luZw==
+Q29uZ3JhdHVsYXRpb25zLCB5b3UgYXJlIG9uZSBzdGVwIGNsb3Nlcg==
+c29tZV9yYW5kb21fdmFsdWVzX2FuZF9oYXNoZXM=
+0x48656c6c6f20576f726c64
+c3RpbGxfZ29pbmdfYXJlX3dlPw==
+YWxtb3N0X2F0X3RoZV9ib3R0b20=
+bWF5YmVfdGhlX2ZsYWdfaXNfZWxzZXdoZXJl
+-->
+
 ### `docker exec`
 Used to run a new command inside an *already running* container. This is extremely useful for troubleshooting or inspecting the inside of a container.
 
